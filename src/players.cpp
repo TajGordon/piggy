@@ -19,6 +19,30 @@ class Bailer : public Player
     }
 };
 
+class NRoller : public Player
+{
+    int n;
+    public:
+    NRoller(int input)
+    {
+        n = input;
+        char buffer[32];
+        sprintf(buffer, "%dth Roller", n);
+        name = buffer;
+    }
+    decision make_decision(GameState gameState) override
+    {
+        if (gameState.roll_no == n)
+        {
+            return decision::bank;
+        }
+        else
+        {
+            return decision::hit;
+        }
+    }
+};
+
 class White : public Player
 {
     public:

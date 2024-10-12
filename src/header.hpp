@@ -34,6 +34,7 @@ class Player
     std::string name;
     int banked_money;
     int unbanked_money;
+    int times_rolled;
     int score; /* Total score achieved */
     int wins;
 

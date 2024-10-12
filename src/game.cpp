@@ -135,10 +135,10 @@ void Game::RunMulti(int gameCount)
 
         ResetForNextGame();
 
-        int round_count = 0;
         while (!(player_has_won()))
         {
-            round_count++;
+            gameState.round_no++;
+            gameState.roll_no++;
             ResetForNextRound();
 
             bool rolled_one = false;
@@ -164,6 +164,7 @@ void Game::RunMulti(int gameCount)
                     for (auto& player : gameState.unbanked_players)
                     {
                         player->unbanked_money += roll;
+                        player->times_rolled++;
                     }
                 }
             }
@@ -204,10 +205,10 @@ void Game::RunMulti(int gameCount)
         char filename[32];
         sprintf(filename, "outdata/outputdata%lld.csv", time(0));
         freopen(filename, "w+", stdout);
-        std::cout << "Name,Score,Average Score,% of Total Score,Wins, Win-rate (%)" << std::endl;
+        std::cout << "Name,Score,Average Score Per Game,Average Score Per Roll,% of Total Score,Wins, Win-rate (%)" << std::endl;
         for (auto& player : players)
         {
-            std::cout << player->name << "," << player->score << "," << (double)player->score / (double)gameCount << "," << 100. * (double)player->score / total_score << "," << player->wins << "," << 100. * (double)player->wins / (double)gameCount << std::endl;
+            std::cout << player->name << "," << player->score << "," << (double)player->score / (double)gameCount << "," << (double)player->score / (double)player->times_rolled <<  "," << 100. * (double)player->score / total_score << "," << player->wins << "," << 100. * (double)player->wins / (double)gameCount << std::endl;
         }
         fclose(stdout);
     };
