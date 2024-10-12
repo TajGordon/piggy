@@ -1,4 +1,5 @@
 *.csv
+outdata
 compile_commands.json
 main
 main.exe
