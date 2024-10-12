@@ -17,6 +17,10 @@ int main(int argc, char* argv[])
     game.AddPlayer(new NRoller(4));
     game.AddPlayer(new NRoller(5));
     game.AddPlayer(new NRoller(6));
-    game.AddPlayer(new White());
+    game.AddPlayer(new WhiteBoy(55));
+    game.AddPlayer(new WhiteBoy(60));
+    game.AddPlayer(new WhiteBoy(70));
+
+
     game.RunMulti(times_to_run);
 }

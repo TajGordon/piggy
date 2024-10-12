@@ -186,6 +186,7 @@ void Game::RunMulti(int gameCount)
     for (auto& player : players)
     {
         total_score += player->score;
+        if (total_score < 0) { std::cout << "OVERFLOW!" << std::endl; return; }
     }
     /* Sort the winners vector before outputting it, so that we can see the ranking */
     auto wc = [](Player* a, Player* b) {

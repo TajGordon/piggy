@@ -43,12 +43,16 @@ class NRoller : public Player
     }
 };
 
-class White : public Player
+class WhiteBoy : public Player
 {
+    int turning_point;
     public:
-    White()
+    WhiteBoy(int input)
     {
-        name = "Whiteboy";
+        turning_point = input;
+        char buffer[32];
+        sprintf(buffer, "Whiteboy #%d", turning_point);
+        name = buffer;
     }
     decision make_decision(GameState gameState) override
     {
@@ -56,7 +60,7 @@ class White : public Player
         {
             return decision::bank;
         }
-        else if (unbanked_money > 20.9 && banked_money < 55)
+        else if (unbanked_money > 20.9 && banked_money < turning_point)
         {
             return decision::bank;
         }
